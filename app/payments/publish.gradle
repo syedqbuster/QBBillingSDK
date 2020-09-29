@@ -1,55 +1,55 @@
-//apply plugin: 'maven-publish'
-//
-////def LIB_GROUP_ID = 'co.queuebuster.libraries'
-////def LIB_ARTIFACT_ID = 'billingsdk'
-//def LIB_VERSION = 'Beta-1.0.1'
-//
-//task sourceJar(type: Jar) {
-//    from android.sourceSets.main.java.srcDirs
-//    classifier "sources"
-//}
-//
-//def credPropertiesFile = rootProject.file('cred.properties')
-//def credProperties = new Properties()
-//credProperties.load(new FileInputStream(credPropertiesFile))
-//
-//publishing {
-//    repositories {
-//        maven {
-//            name = "GithubPackages"
-//            url = uri("https://maven.pkg.github.com/syedqbuster/QBBillingSDK")
-//            credentials {
-//                username = "syedqbuster"
-//                password =  "a7fa3f988eeae993c471840010febeeb84a9ffe7"
-//            }
-//        }
-//    }
-//    publications {
-//        gpr(MavenPublication) {
-//            //from(components.java)
-////            groupId LIB_GROUP_ID
-////            artifactId LIB_ARTIFACT_ID
-//            version LIB_VERSION
-////            artifact("$buildDir/outputs/aar/billingsdk-release.aar")
-////            artifact(sourceJar)
-//            pom {
-//                name = 'QB Billing SDK'
-//                description = 'A library to use for payment SDK'
-//                url = 'https://github.com/syedqbuster/QBBillingSDK'
-//
-//                developers {
-//                    developer {
-//                        id = 'syedqbuster'
-//                        name = 'Syed Hussain Mehdi'
-//                        email = 'syed@queuebuster.co'
-//                    }
-//                }
-//                scm {
-//                    connection = 'scm:git:https://github.com/syedqbuster/QBBillingSDK.git'
-//                    developerConnection = 'scm:git:git@github.com:syedqbuster/QBBillingSDK.git'
-//                    url = 'https://github.com/syedqbuster/QBBillingSDK'
-//                }
-//            }
-//        }
-//    }
-//}
+apply plugin: 'maven-publish'
+
+def LIB_GROUP_ID = 'co.queuebuster.libraries'
+def LIB_ARTIFACT_ID = 'billingsdk'
+def LIB_VERSION = 'Beta-1.0.0'
+
+task sourceJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier "sources"
+}
+
+def credPropertiesFile = rootProject.file('cred.properties')
+def credProperties = new Properties()
+credProperties.load(new FileInputStream(credPropertiesFile))
+
+publishing {
+    repositories {
+        maven {
+            name = "GithubPackages"
+            url = uri("https://maven.pkg.github.com/syedqbuster/QBBillingSDK")
+            credentials {
+                username = "syedqbuster"
+                password =  "6b768f2073866299ae13676cf33c86bdd880fc9b"
+            }
+        }
+    }
+    publications {
+        billingsdk(MavenPublication) {
+            //from(components.java)
+            groupId LIB_GROUP_ID
+            artifactId LIB_ARTIFACT_ID
+            version LIB_VERSION
+            artifact("$buildDir/outputs/aar/payments-release.aar")
+            artifact(sourceJar)
+            pom {
+                name = 'QB Billing SDK'
+                description = 'A library to use for payment SDK'
+                url = 'https://github.com/syedqbuster/QBBillingSDK'
+
+                developers {
+                    developer {
+                        id = 'syedqbuster'
+                        name = 'Syed Hussain Mehdi'
+                        email = 'syed@queuebuster.co'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/syedqbuster/QBBillingSDK.git'
+                    developerConnection = 'scm:git:git@github.com:syedqbuster/QBBillingSDK.git'
+                    url = 'https://github.com/syedqbuster/QBBillingSDK'
+                }
+            }
+        }
+    }
+}

@@ -22,14 +22,10 @@ allprojects {
         jcenter()
 
         mavenLocal()
-//        maven {
-//            name = "GithubPackages"
-//            url = uri("https://maven.pkg.github.com/syedqbuster/QBBillingSDK")
-//            credentials {
-//                username = "syedqbuster"
-//                password =  "a7fa3f988eeae993c471840010febeeb84a9ffe7"
-//            }
-//        }
+        maven {
+            name = "QBBillingSDK"
+            url = uri("https://maven.pkg.github.com/syedqbuster/QBBillingSDK")
+        }
     }
 }
 
