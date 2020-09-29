@@ -1,0 +1,38 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.0.0"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+def credPropertiesFile = rootProject.file('cred.properties')
+def credProperties = new Properties()
+credProperties.load(new FileInputStream(credPropertiesFile))
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+
+        mavenLocal()
+        maven {
+            name = "QBBillingSDK"
+            url = uri("https://maven.pkg.github.com/syedqbuster/QBBillingSDK")
+            credentials {
+                username = System.getenv('GITHUB_USER') ?: credProperties['GITHUB_USER']
+                password = System.getenv('GITHUB_PERSONAL_ACCESS_TOKEN') ?: credProperties['GITHUB_PERSONAL_ACCESS_TOKEN']
+            }
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
