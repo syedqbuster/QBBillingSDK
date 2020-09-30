@@ -1,13 +1,13 @@
 # QBBillingSDK
 A Queuebuster Library for billing integrations
 
-1. [Setup](README.md#setup)
-2. [Mintoak](README.md#mintoak)
-3. [Ezetap Device](README.md#ezetap-device)
-4. [EPOS Payment](README.md#ezetap-device)
-5. [PineLabs Cloud](README.md#ezetap-device)
+1. [Setup](#setup)
+2. [Mintoak](#mintoak)
+3. [Ezetap Device](#ezetap-device)
+4. [EPOS Payment](#epos-payment)
+5. [PineLabs Cloud](#pinelabs-cloud)
 
-###Setup
+## Setup
 
 Step 1. Add it in your root build.gradle at the end of repositories:
 
@@ -28,7 +28,7 @@ Step 2. Add the dependency
           }
 
 
-#Mintoak
+## Mintoak
 
 Configuration - First configure the Mintoak in your application when app start.
 Better to configure in *Application* class
@@ -36,7 +36,7 @@ Better to configure in *Application* class
         //CONFIGURE MINTOAK
         MintOakPayment.configure("API_KEY","TERMINAL_ID","CRYPTO_KEY");
 
-##Create Mintoak Instance
+### Create Mintoak Instance
 
         MintOakPayment mintOakPayment = new MintOakPayment.Builder(this)
                         .setAmount(20)
@@ -63,14 +63,31 @@ Better to configure in *Application* class
                         })
                         .build();
 
-##Payment through Mintoak App
+### Payment through Mintoak App
 
          mintOakPayment.pay(); //App to App
 
-##Payment through Mintoak Api
+If you are using app to app integration you need to call this   **onActivityResult()**
+
+        mintOakPayment.setResult(requestCode, resultCode, data); //call this in onActivityResult in case of app to app integration
+
+### Payment through Mintoak Api
 
         mintOakPayment.payThroughApi(); //App to Api
 
-##To check status of Payment
+### To check status of Payment
 
         mintOakPayment.checkStatus(myRef, ivNumber);
+
+
+## Ezetap Device
+
+Need to write doc
+
+## EPOS Payment
+
+Need to write doc
+
+## PineLabs Cloud
+
+Need to write doc
